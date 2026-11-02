@@ -1,0 +1,19 @@
+{"_comment": "检索评测集（全部为测试，检索参数沿用项目一默认值，未针对本集调参）。gold_items = 回答这个问题必需的配置项。hop 标注需要几跳关系才能答全。"}
+{"id": "q01", "query": "加更活动怎么开", "gold_items": ["extra_update_event", "full_attendance_bonus", "daily_update_words"], "hop": 2, "type": "explain"}
+{"id": "q02", "query": "全勤奖是什么", "gold_items": ["full_attendance_bonus", "daily_update_words"], "hop": 1, "type": "explain"}
+{"id": "q03", "query": "首页推荐位为什么配不上", "gold_items": ["home_banner", "quality_review_pass"], "hop": 1, "type": "explain"}
+{"id": "q04", "query": "保底金额要怎么配", "gold_items": ["guarantee_amount", "contract_type"], "hop": 1, "type": "explain"}
+{"id": "q05", "query": "广告分成开了没钱", "gold_items": ["ad_revenue_share", "free_read_mode"], "hop": 1, "type": "explain"}
+{"id": "q06", "query": "付费起始章节有什么讲究", "gold_items": ["paywall_start_chapter", "paid_chapter"], "hop": 1, "type": "explain"}
+{"id": "q07", "query": "新人作者扶持计划和大神计划能一起开吗", "gold_items": ["new_author_plan", "veteran_author_plan"], "hop": 1, "type": "explain"}
+{"id": "q08", "query": "买断的书能拿完本奖吗", "gold_items": ["contract_type", "completion_bonus"], "hop": 1, "type": "explain"}
+{"id": "q09", "query": "免费书想转付费要改哪些", "gold_items": ["free_read_mode", "paid_chapter", "paywall_start_chapter", "ad_revenue_share"], "hop": 2, "type": "optimize"}
+{"id": "q10", "query": "给新人作者的新书配一套冷启动方案", "gold_items": ["new_author_plan", "newbook_boost", "free_read_mode", "ad_revenue_share"], "hop": 1, "type": "recommend"}
+{"id": "q11", "query": "头部作品冲榜该开什么", "gold_items": ["home_banner", "quality_review_pass", "extra_update_event", "full_attendance_bonus", "daily_update_words"], "hop": 2, "type": "recommend"}
+{"id": "q12", "query": "保底作品的分成比例能给多少", "gold_items": ["share_ratio", "contract_type", "guarantee_amount"], "hop": 1, "type": "explain"}
+{"id": "q13", "query": "想让作者稳定更新，福利怎么配", "gold_items": ["full_attendance_bonus", "daily_update_words", "extra_update_event"], "hop": 2, "type": "recommend"}
+{"id": "q14", "query": "那个千字给钱的怎么设置", "gold_items": ["guarantee_amount", "contract_type"], "hop": 1, "type": "explain"}
+{"id": "q15", "query": "R002 是什么规则", "gold_items": ["full_attendance_bonus", "daily_update_words"], "hop": 1, "type": "explain"}
+{"id": "q16", "query": "新书想多拿曝光有什么办法", "gold_items": ["newbook_boost", "home_banner", "quality_review_pass", "new_author_plan"], "hop": 2, "type": "recommend"}
+{"id": "q17", "query": "作者问为什么没拿到全勤", "gold_items": ["full_attendance_bonus", "daily_update_words"], "hop": 1, "type": "explain"}
+{"id": "q18", "query": "VIP章节从第几章开始比较好", "gold_items": ["paywall_start_chapter", "paid_chapter"], "hop": 1, "type": "explain"}

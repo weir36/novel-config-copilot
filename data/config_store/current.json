@@ -1,0 +1,166 @@
+{
+  "_comment": "模拟的作品配置快照（虚构）。Agent 的 get_current_config 工具从这里读，让「在现有配置上优化」有真实基准。生效优先级：频道 < 作者 < 作品。",
+  "channels": {
+    "male": {
+      "name": "男频",
+      "values": {
+        "newbook_boost": true,
+        "completion_bonus": true
+      }
+    },
+    "female": {
+      "name": "女频",
+      "values": {
+        "newbook_boost": true,
+        "completion_bonus": true
+      }
+    }
+  },
+  "authors": {
+    "W1001": {
+      "name": "林小新",
+      "level": "新人",
+      "channel": "female",
+      "values": {
+        "new_author_plan": true,
+        "daily_update_words": 4000
+      }
+    },
+    "W2002": {
+      "name": "周稳",
+      "level": "普通",
+      "channel": "male",
+      "values": {
+        "daily_update_words": 6000
+      }
+    },
+    "W3003": {
+      "name": "墨大神",
+      "level": "大神",
+      "channel": "male",
+      "values": {
+        "veteran_author_plan": true,
+        "daily_update_words": 8000
+      }
+    }
+  },
+  "books": {
+    "B001": {
+      "name": "雾港来信",
+      "author": "W1001",
+      "channel": "female",
+      "stage": "新书",
+      "values": {
+        "contract_type": "share",
+        "share_ratio": 50,
+        "free_read_mode": true,
+        "ad_revenue_share": true,
+        "quality_review_pass": false
+      }
+    },
+    "B002": {
+      "name": "铁轨尽头",
+      "author": "W2002",
+      "channel": "male",
+      "stage": "连载中",
+      "values": {
+        "contract_type": "guarantee",
+        "guarantee_amount": 20,
+        "share_ratio": 45,
+        "paid_chapter": true,
+        "paywall_start_chapter": 30,
+        "full_attendance_bonus": true
+      }
+    },
+    "B003": {
+      "name": "长夜登塔",
+      "author": "W3003",
+      "channel": "male",
+      "stage": "连载中，数据上升",
+      "values": {
+        "contract_type": "share",
+        "share_ratio": 60,
+        "quality_review_pass": true,
+        "paid_chapter": true,
+        "paywall_start_chapter": 40,
+        "full_attendance_bonus": true
+      }
+    },
+    "B004": {
+      "name": "旧城杂货铺",
+      "author": "W2002",
+      "channel": "male",
+      "stage": "连载中",
+      "values": {
+        "contract_type": "buyout",
+        "completion_bonus": false,
+        "paid_chapter": true,
+        "paywall_start_chapter": 15
+      }
+    }
+  },
+  "effect_baseline": {
+    "_comment": "影响试算用的系数（虚构的经验值）：配置项变化对各指标的相对影响，只用来给 Agent 一个量级感，不是精确预测。",
+    "newbook_boost": {
+      "newbook_exposure": 0.4
+    },
+    "home_banner": {
+      "newbook_exposure": 0.8,
+      "platform_revenue": 0.15
+    },
+    "new_author_plan": {
+      "newbook_exposure": 0.2,
+      "author_income": 0.05
+    },
+    "veteran_author_plan": {
+      "platform_revenue": 0.1,
+      "author_income": 0.08
+    },
+    "quality_review_pass": {
+      "reader_retention": 0.03
+    },
+    "full_attendance_bonus": {
+      "update_stability": 0.25,
+      "author_income": 0.06,
+      "platform_revenue": -0.03
+    },
+    "completion_bonus": {
+      "reader_retention": 0.05,
+      "author_income": 0.04,
+      "platform_revenue": -0.02
+    },
+    "extra_update_event": {
+      "reader_retention": 0.08,
+      "update_stability": 0.05
+    },
+    "free_read_mode": {
+      "reader_retention": 0.15,
+      "newbook_exposure": 0.25,
+      "platform_revenue": -0.1
+    },
+    "ad_revenue_share": {
+      "author_income": 0.06
+    },
+    "paid_chapter": {
+      "platform_revenue": 0.3,
+      "author_income": 0.12,
+      "reader_retention": -0.12
+    },
+    "paywall_start_chapter": {
+      "reader_retention": 0.03,
+      "platform_revenue": -0.02
+    },
+    "share_ratio": {
+      "author_income": 0.03,
+      "platform_revenue": -0.03
+    },
+    "guarantee_amount": {
+      "author_income": 0.04,
+      "update_stability": 0.02,
+      "platform_revenue": -0.03
+    },
+    "daily_update_words": {
+      "update_stability": 0.03
+    }
+  }
+}

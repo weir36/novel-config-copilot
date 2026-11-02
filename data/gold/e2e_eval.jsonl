@@ -1,0 +1,13 @@
+{"_comment": "端到端评测集。断言全部是程序可判定的，不依赖 LLM 裁判。"}
+{"id": "e01", "query": "加更活动要怎么才能开起来", "intent": "explain", "must_mention_keys": ["extra_update_event", "full_attendance_bonus", "daily_update_words"], "note": "两跳依赖链要讲全"}
+{"id": "e02", "query": "给 W1001 的新书 B001 配一套冷启动方案", "intent": "recommend", "plan_must_pass": true, "forbidden_values": {"veteran_author_plan": true}, "must_mention_text": ["新人"], "note": "新人计划与大神计划互斥"}
+{"id": "e03", "query": "保底分成的书分成给 60% 行吗", "intent": "explain", "must_mention_rules": ["R003"], "must_mention_text": ["50"], "note": "必须指出 R003"}
+{"id": "e04", "query": "买断的书能开完本奖吗", "intent": "explain", "must_mention_rules": ["R001"], "note": "必须指出 R001"}
+{"id": "e05", "query": "帮我出一套头部作品冲榜的配置", "intent": "recommend", "plan_must_pass": true, "note": "首页推荐位要带上精品审核，加更要带上全勤"}
+{"id": "e06", "query": "B003 想冲榜，在现有配置上怎么调", "intent": "optimize", "plan_must_pass": true, "note": "要先查 B003 现状"}
+{"id": "e07", "query": "把 B004 的付费起点改到第 30 章，再开个完本奖", "intent": "optimize", "plan_must_pass": true, "forbidden_values": {"completion_bonus": true}, "must_mention_rules": ["R001"], "note": "B004 是买断，完本奖不能开"}
+{"id": "e08", "query": "给一本男频新书配福利，要全勤奖", "intent": "recommend", "plan_must_pass": true, "note": "全勤奖要配日更字数且不低于 4000（R002）"}
+{"id": "e09", "query": "一本书能同时开免费阅读和付费章节吗", "intent": "explain", "must_mention_keys": ["free_read_mode", "paid_chapter"], "must_mention_text": ["互斥"]}
+{"id": "e10", "query": "作者问为什么这个月没拿到全勤奖", "intent": "explain", "must_mention_keys": ["full_attendance_bonus", "daily_update_words"]}
+{"id": "e11", "query": "帮我写一段小说开头", "intent": "out_of_scope", "expect_short_circuit": true}
+{"id": "e12", "query": "今天天气怎么样", "intent": "out_of_scope", "expect_short_circuit": true}

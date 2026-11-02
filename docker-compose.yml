@@ -1,0 +1,55 @@
+# 可选的生产形态组件。不启动这些服务时，应用会自动降级到本地实现
+# （networkx / rank_bm25 / 进程内会话），功能等价，只是不支持多实例共享。
+# 显式命名：目录名是中文时 compose 推不出项目名，会报 project name must not be empty
+name: ncc
+
+services:
+
+  neo4j:
+    image: neo4j:5.19-community
+    container_name: ncc-neo4j
+    ports:
+      - "7474:7474"   # Browser
+      - "7687:7687"   # Bolt
+    environment:
+      NEO4J_AUTH: neo4j/livecopilot
+      NEO4J_server_memory_heap_max__size: 1G
+      NEO4J_server_memory_pagecache_size: 512M
+    volumes:
+      - neo4j_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:7474 || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: ncc-redis
+    ports:
+      - "6379:6379"
+    command: ["redis-server", "--appendonly", "no", "--maxmemory", "256mb",
+              "--maxmemory-policy", "allkeys-lru"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.13.4
+    container_name: ncc-es
+    ports:
+      - "9200:9200"
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      ES_JAVA_OPTS: "-Xms512m -Xmx512m"
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 12
+
+volumes:
+  neo4j_data:

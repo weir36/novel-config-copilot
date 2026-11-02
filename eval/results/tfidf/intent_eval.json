@@ -1,0 +1,86 @@
+{
+  "split": "test",
+  "classifier": "vector-logreg",
+  "n_cases": 36,
+  "accuracy": 0.9444,
+  "avg_latency_ms": 0.24,
+  "fallback_rate": 0.0,
+  "per_label": {
+    "explain": {
+      "precision": 0.9231,
+      "recall": 1.0,
+      "f1": 0.96,
+      "support": 12
+    },
+    "recommend": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 8
+    },
+    "optimize": {
+      "precision": 0.8889,
+      "recall": 1.0,
+      "f1": 0.9412,
+      "support": 8
+    },
+    "out_of_scope": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "support": 8
+    }
+  },
+  "confusion": {
+    "explain": {
+      "explain": 12,
+      "recommend": 0,
+      "optimize": 0,
+      "out_of_scope": 0
+    },
+    "recommend": {
+      "recommend": 8,
+      "explain": 0,
+      "optimize": 0,
+      "out_of_scope": 0
+    },
+    "optimize": {
+      "optimize": 8,
+      "explain": 0,
+      "recommend": 0,
+      "out_of_scope": 0
+    },
+    "out_of_scope": {
+      "explain": 1,
+      "out_of_scope": 6,
+      "optimize": 1,
+      "recommend": 0
+    }
+  },
+  "errors": [
+    {
+      "query": "周末有什么综艺推荐",
+      "gold": "out_of_scope",
+      "pred": "explain",
+      "confidence": 0.5497,
+      "scores": {
+        "explain": 0.5497,
+        "recommend": 0.1694,
+        "optimize": 0.1106,
+        "out_of_scope": 0.1703
+      }
+    },
+    {
+      "query": "我的快递到哪了",
+      "gold": "out_of_scope",
+      "pred": "optimize",
+      "confidence": 0.4034,
+      "scores": {
+        "explain": 0.1266,
+        "recommend": 0.1658,
+        "optimize": 0.4034,
+        "out_of_scope": 0.3042
+      }
+    }
+  ]
+}

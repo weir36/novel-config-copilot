@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>网文作品资源配置助手</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="logo">LC</div>
+      <div>
+        <h1>网文作品资源配置助手</h1>
+        <p class="sub">GraphRAG + Agent</p>
+      </div>
+    </div>
+
+    <section class="panel">
+      <h2>示例问题</h2>
+      <div class="examples" id="examples"></div>
+    </section>
+
+    <section class="panel">
+      <h2>运行配置</h2>
+      <label class="row">
+        <span>检索模式</span>
+        <select id="mode">
+          <option value="graphrag">GraphRAG（两阶段）</option>
+          <option value="hybrid">Hybrid（不过图）</option>
+          <option value="vector">纯向量</option>
+          <option value="bm25">纯关键词</option>
+        </select>
+      </label>
+      <label class="row">
+        <span>Agent 循环</span>
+        <input type="checkbox" id="useAgent" checked>
+      </label>
+      <button class="ghost" id="resetBtn">清空会话</button>
+    </section>
+
+    <section class="panel" id="healthPanel">
+      <h2>后端状态</h2>
+      <div class="health" id="health">加载中…</div>
+    </section>
+  </aside>
+
+  <main class="main">
+    <div class="chat" id="chat"></div>
+
+    <form class="composer" id="composer">
+      <textarea id="input" rows="1" placeholder="问点什么，比如：加更活动要怎么才能开起来？"></textarea>
+      <button type="submit" id="sendBtn">发送</button>
+    </form>
+  </main>
+
+  <aside class="trace" id="trace">
+    <div class="trace-head">
+      <h2>推理轨迹</h2>
+      <span class="hint">本轮检索与 Agent 的每一步</span>
+    </div>
+    <div class="trace-body" id="traceBody">
+      <div class="empty">发起一次提问后，这里会显示实体链接、图谱扩展、混合检索与 Agent 工具调用的全过程。</div>
+    </div>
+  </aside>
+
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

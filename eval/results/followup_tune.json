@@ -1,0 +1,267 @@
+{
+  "split": "tune",
+  "n_dialogs": 12,
+  "n_turns": 24,
+  "accuracy": 1.0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "f1": 1.0,
+  "false_positive": 0,
+  "false_negative": 0,
+  "details": [
+    {
+      "dialog": "f01",
+      "turn": 2,
+      "query": "那加更活动呢",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "f01",
+      "turn": 3,
+      "query": "首页推荐位要什么条件",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "f02",
+      "turn": 2,
+      "query": "那分成比例最多能给多少",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词"
+      ]
+    },
+    {
+      "dialog": "f02",
+      "turn": 3,
+      "query": "今天北京天气怎么样",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "f03",
+      "turn": 2,
+      "query": "再加个全勤奖",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "在改上一轮的方案"
+      ]
+    },
+    {
+      "dialog": "f03",
+      "turn": 3,
+      "query": "日更字数填多少合适",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "f04",
+      "turn": 2,
+      "query": "付费起始章节有什么讲究",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "f04",
+      "turn": 3,
+      "query": "买断的书能开完本奖吗",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "f05",
+      "turn": 2,
+      "query": "这个和大神计划有什么区别",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "f05",
+      "turn": 3,
+      "query": "广告分成为什么没生效",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "f06",
+      "turn": 2,
+      "query": "换成 B002 呢",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "短问且没提配置项"
+      ]
+    },
+    {
+      "dialog": "f06",
+      "turn": 3,
+      "query": "R004 是什么",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "f07",
+      "turn": 2,
+      "query": "精品审核怎么过",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "f07",
+      "turn": 3,
+      "query": "那新书期流量扶持呢",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词"
+      ]
+    },
+    {
+      "dialog": "f08",
+      "turn": 2,
+      "query": "保底分成呢",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "短问且没提配置项"
+      ]
+    },
+    {
+      "dialog": "f08",
+      "turn": 3,
+      "query": "全勤奖的门槛是多少",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "f09",
+      "turn": 2,
+      "query": "把付费起点改到第 25 章",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "在改上一轮的方案"
+      ]
+    },
+    {
+      "dialog": "f09",
+      "turn": 3,
+      "query": "再去掉完本奖",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "在改上一轮的方案"
+      ]
+    },
+    {
+      "dialog": "f10",
+      "turn": 2,
+      "query": "那免费阅读对留存有影响吗",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "f10",
+      "turn": 3,
+      "query": "大神作者计划有什么好处",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "f11",
+      "turn": 2,
+      "query": "它是 error 还是 warn",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词"
+      ]
+    },
+    {
+      "dialog": "f11",
+      "turn": 3,
+      "query": "作者分成比例的范围是多少",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "f12",
+      "turn": 2,
+      "query": "那全勤奖还能开吗",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "f12",
+      "turn": 3,
+      "query": "首页推荐位为什么配不上",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    }
+  ]
+}

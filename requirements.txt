@@ -1,0 +1,34 @@
+# ---- 核心依赖（必装，纯 Python，无重型编译）----
+fastapi>=0.110
+uvicorn[standard]>=0.29
+pydantic>=2.6
+pydantic-settings>=2.2
+python-dotenv>=1.0
+PyYAML>=6.0
+numpy>=1.26
+httpx>=0.27
+jieba>=0.42
+rank-bm25>=0.2.2
+networkx>=3.2
+scikit-learn>=1.4   # 意图识别的逻辑回归；没装时退回 kNN
+
+# ---- 测试 ----
+pytest>=8.0
+
+# ---- 可选依赖（装了自动启用，没装自动降级到本地实现）----
+# 向量检索：装了用 FAISS IndexFlatIP，没装用 numpy 暴力内积（语料量级 <1w 时性能无差异）
+# faiss-cpu>=1.8.0
+#
+# 语义向量：装了用 BAAI/bge-small-zh-v1.5，没装用内置 TF-IDF（见 app/retrieval/embedder.py）
+# sentence-transformers>=2.7.0
+# torch>=2.2
+#
+# 图存储：装了且 Neo4j 可连接则用 Cypher，否则用 networkx 内存图
+# neo4j>=5.19
+#
+# 会话记忆：装了且 Redis 可连接则用 Redis，否则用进程内 LRU
+# redis>=5.0
+#
+# 关键词检索：装了且 ES 可连接则用 ES BM25，否则用 rank_bm25
+# elasticsearch>=8.13,<9   # 客户端大版本必须和服务端一致，9.x 客户端连 8.x 服务端会 400
+#

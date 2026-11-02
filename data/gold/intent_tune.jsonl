@@ -1,0 +1,16 @@
+{"_comment": "意图识别调参集：只在调种子样本、关键词时看它。测试集是 intent_eval.jsonl，调参过程中不看。"}
+{"query": "精品审核是做什么的", "label": "explain"}
+{"query": "全勤奖有什么门槛", "label": "explain"}
+{"query": "R001 是哪条规则", "label": "explain"}
+{"query": "付费章节会影响留存吗", "label": "explain"}
+{"query": "免费书能开广告分成吗", "label": "explain"}
+{"query": "给 B002 配一套福利方案", "label": "recommend"}
+{"query": "新书冷启动推荐开哪些", "label": "recommend"}
+{"query": "帮我设计一套女频新书的方案", "label": "recommend"}
+{"query": "B001 在现有基础上加强曝光", "label": "optimize"}
+{"query": "把 B003 的日更要求调到 6000", "label": "optimize"}
+{"query": "当前这套配置帮我优化下收入", "label": "optimize"}
+{"query": "帮我写一封感谢信", "label": "out_of_scope"}
+{"query": "明天去哪里玩", "label": "out_of_scope"}
+{"query": "最好看的言情小说是哪本", "label": "out_of_scope"}
+{"query": "怎么做红烧肉", "label": "out_of_scope"}

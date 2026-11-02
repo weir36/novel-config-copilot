@@ -1,0 +1,13 @@
+{"_comment": "追问识别调参集：设计判断规则时对照的 12 组对话。第 2 轮起标注这一句是否接着上文问（followup）。测试集是 followup_eval.jsonl。"}
+{"id": "f01", "turns": [{"q": "全勤奖是什么"}, {"q": "那加更活动呢", "followup": true}, {"q": "首页推荐位要什么条件", "followup": false}]}
+{"id": "f02", "turns": [{"q": "保底金额怎么配"}, {"q": "那分成比例最多能给多少", "followup": true}, {"q": "今天北京天气怎么样", "followup": false}]}
+{"id": "f03", "turns": [{"q": "给 B001 配一套冷启动方案"}, {"q": "再加个全勤奖", "followup": true}, {"q": "日更字数填多少合适", "followup": true}]}
+{"id": "f04", "turns": [{"q": "付费章节和免费阅读能同时开吗"}, {"q": "付费起始章节有什么讲究", "followup": true}, {"q": "买断的书能开完本奖吗", "followup": false}]}
+{"id": "f05", "turns": [{"q": "新人作者扶持计划是什么"}, {"q": "这个和大神计划有什么区别", "followup": true}, {"q": "广告分成为什么没生效", "followup": false}]}
+{"id": "f06", "turns": [{"q": "B003 想冲榜怎么调"}, {"q": "换成 B002 呢", "followup": true}, {"q": "R004 是什么", "followup": false}]}
+{"id": "f07", "turns": [{"q": "首页推荐位依赖什么"}, {"q": "精品审核怎么过", "followup": true}, {"q": "那新书期流量扶持呢", "followup": true}]}
+{"id": "f08", "turns": [{"q": "买断和分成有什么区别"}, {"q": "保底分成呢", "followup": true}, {"q": "全勤奖的门槛是多少", "followup": false}]}
+{"id": "f09", "turns": [{"q": "给男频新书出一套方案"}, {"q": "把付费起点改到第 25 章", "followup": true}, {"q": "再去掉完本奖", "followup": true}]}
+{"id": "f10", "turns": [{"q": "广告分成依赖什么"}, {"q": "那免费阅读对留存有影响吗", "followup": true}, {"q": "大神作者计划有什么好处", "followup": false}]}
+{"id": "f11", "turns": [{"q": "R002 是什么规则"}, {"q": "它是 error 还是 warn", "followup": true}, {"q": "作者分成比例的范围是多少", "followup": false}]}
+{"id": "f12", "turns": [{"q": "日更字数要求填 0 代表什么"}, {"q": "那全勤奖还能开吗", "followup": true}, {"q": "首页推荐位为什么配不上", "followup": false}]}

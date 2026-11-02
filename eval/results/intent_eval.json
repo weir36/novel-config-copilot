@@ -1,0 +1,98 @@
+{
+  "split": "test",
+  "classifier": "vector-logreg",
+  "n_cases": 36,
+  "accuracy": 0.9167,
+  "avg_latency_ms": 8.66,
+  "fallback_rate": 0.0,
+  "per_label": {
+    "explain": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571,
+      "support": 12
+    },
+    "recommend": {
+      "precision": 0.8889,
+      "recall": 1.0,
+      "f1": 0.9412,
+      "support": 8
+    },
+    "optimize": {
+      "precision": 0.8889,
+      "recall": 1.0,
+      "f1": 0.9412,
+      "support": 8
+    },
+    "out_of_scope": {
+      "precision": 0.8889,
+      "recall": 1.0,
+      "f1": 0.9412,
+      "support": 8
+    }
+  },
+  "confusion": {
+    "explain": {
+      "out_of_scope": 1,
+      "explain": 9,
+      "optimize": 1,
+      "recommend": 1
+    },
+    "recommend": {
+      "recommend": 8,
+      "explain": 0,
+      "optimize": 0,
+      "out_of_scope": 0
+    },
+    "optimize": {
+      "optimize": 8,
+      "explain": 0,
+      "recommend": 0,
+      "out_of_scope": 0
+    },
+    "out_of_scope": {
+      "out_of_scope": 8,
+      "explain": 0,
+      "recommend": 0,
+      "optimize": 0
+    }
+  },
+  "errors": [
+    {
+      "query": "guarantee_amount 的单位是什么",
+      "gold": "explain",
+      "pred": "out_of_scope",
+      "confidence": 0.4379,
+      "scores": {
+        "explain": 0.3816,
+        "recommend": 0.0873,
+        "optimize": 0.0932,
+        "out_of_scope": 0.4379
+      }
+    },
+    {
+      "query": "R004 是 error 还是 warn",
+      "gold": "explain",
+      "pred": "optimize",
+      "confidence": 0.3598,
+      "scores": {
+        "explain": 0.3569,
+        "recommend": 0.1859,
+        "optimize": 0.3598,
+        "out_of_scope": 0.0973
+      }
+    },
+    {
+      "query": "新人作者扶持计划能配在作品上吗",
+      "gold": "explain",
+      "pred": "recommend",
+      "confidence": 0.4489,
+      "scores": {
+        "explain": 0.3197,
+        "recommend": 0.4489,
+        "optimize": 0.1839,
+        "out_of_scope": 0.0475
+      }
+    }
+  ]
+}

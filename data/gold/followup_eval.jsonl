@@ -1,0 +1,11 @@
+{"_comment": "追问识别测试集：10 组多轮对话，判断规则定稿后才写，评测后不再改规则。第 2 轮起标注这一句是否接着上文问（followup）。"}
+{"id": "t01", "turns": [{"q": "完本奖怎么发"}, {"q": "那买断的书呢", "followup": true}, {"q": "精品审核是什么", "followup": false}]}
+{"id": "t02", "turns": [{"q": "给 B002 配一套福利方案"}, {"q": "全勤门槛提到 5000", "followup": true}, {"q": "再加个加更活动", "followup": true}]}
+{"id": "t03", "turns": [{"q": "免费阅读模式有什么好处"}, {"q": "广告分成跟它有关系吗", "followup": true}, {"q": "R003 是什么规则", "followup": false}]}
+{"id": "t04", "turns": [{"q": "首页推荐位怎么上"}, {"q": "如果没过精品审核会怎样", "followup": true}, {"q": "日更字数要求是什么", "followup": false}]}
+{"id": "t05", "turns": [{"q": "新人作者扶持计划能配在作品上吗"}, {"q": "大神计划呢", "followup": true}, {"q": "付费起始章节最多填多少", "followup": false}]}
+{"id": "t06", "turns": [{"q": "B004 的配置有问题帮我改"}, {"q": "完本奖为什么不能开", "followup": true}, {"q": "今天几号", "followup": false}]}
+{"id": "t07", "turns": [{"q": "保底金额的单位是什么"}, {"q": "上限是多少", "followup": true}, {"q": "加更活动依赖什么", "followup": false}]}
+{"id": "t08", "turns": [{"q": "付费章节会影响留存吗"}, {"q": "从第几章开始收费比较好", "followup": true}, {"q": "新书期流量扶持能配在频道上吗", "followup": false}]}
+{"id": "t09", "turns": [{"q": "签约类型有哪几种"}, {"q": "选买断的话分成比例还生效吗", "followup": true}, {"q": "全勤奖怎么开", "followup": false}]}
+{"id": "t10", "turns": [{"q": "给新人作者的新书出一套方案"}, {"q": "把免费阅读去掉", "followup": true}, {"q": "那付费起点设第几章", "followup": true}]}

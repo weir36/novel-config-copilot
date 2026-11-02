@@ -1,0 +1,312 @@
+# =============================================================================
+# 网文作品资源配置注册表 (Config Registry)
+#
+# 这份文件模拟「网文平台编辑后台的配置元数据库」导出，是规则引擎与评测基线的唯一事实源。
+# 所有政策、比例、金额、门槛均为**模拟数据**，不代表任何真实平台的规则。
+#
+# 它有三个用途：
+#   1. 规则引擎 (app/validation) 直接读取，用于依赖/互斥/取值范围/维度合法性校验；
+#   2. 作为图谱抽取的 gold standard，评测从散文档中抽实体/关系的 P/R/F1；
+#   3. 生成模拟的作品配置快照 (data/config_store)。
+#
+# 注意：raw_docs/ 下的政策文档是「人写的散文」，与本文件相互独立。
+# 线上链路只读 docs 建图谱，不读本文件 —— 否则评测就没有意义了。
+# =============================================================================
+
+meta:
+  version: "2026.10"
+  domain: "网文作品资源配置（模拟）"
+  dimensions:
+    - key: channel
+      name: 频道
+      desc: 以频道（男频 / 女频）为粒度的全局配置，覆盖面最广、优先级最低
+      examples: [male, female]
+    - key: author
+      name: 作者
+      desc: 以签约作者为粒度，影响该作者名下的全部作品
+    - key: book
+      name: 作品
+      desc: 以单本作品为粒度，可覆盖频道与作者配置，优先级最高
+  priority_order: [channel, author, book]  # 后者覆盖前者
+
+categories:
+  - key: contract
+    name: 签约
+  - key: welfare
+    name: 作者福利
+  - key: traffic
+    name: 推荐与扶持
+  - key: reading
+    name: 阅读模式
+
+# 业务效果实体：配置项通过 ENHANCES / WEAKENS 关系指向这些效果
+# 约定：ENHANCES = 让这个指标变好，WEAKENS = 让这个指标变差
+effects:
+  - key: author_income
+    name: 作者收入
+  - key: reader_retention
+    name: 读者留存
+  - key: newbook_exposure
+    name: 新书曝光
+  - key: platform_revenue
+    name: 平台收益
+  - key: update_stability
+    name: 更新稳定性
+
+# =============================================================================
+# 配置项
+# type: bool | enum | int | percent
+# =============================================================================
+items:
+
+  # ---------------------- 签约 contract ----------------------
+  - key: contract_type
+    name: 签约类型
+    aliases: [签约方式, 合同类型, 签约模式]
+    category: contract
+    dimensions: [book]
+    type: enum
+    options: [share, buyout, guarantee]
+    default: share
+    desc: 作品的签约方式。share=分成（作者按比例分收益），buyout=买断（平台一次性买下版权，之后收益归平台），guarantee=保底分成（平台按千字给保底，收益超出保底部分再分成）。
+    depends_on: []
+    mutex_with: []
+    enhances: []
+    weakens: []
+
+  - key: share_ratio
+    name: 作者分成比例
+    aliases: [分成比例, 作者分成]
+    category: contract
+    dimensions: [book]
+    type: percent
+    range: [30, 70]
+    default: 50
+    unit: "%"
+    desc: 作品收益中分给作者的比例。签约类型为买断时该项不生效；保底分成时受 R003 限制。
+    depends_on: []
+    mutex_with: []
+    enhances: [author_income]
+    weakens: [platform_revenue]
+
+  - key: guarantee_amount
+    name: 保底金额
+    aliases: [千字保底, 保底稿费]
+    category: contract
+    dimensions: [book]
+    type: int
+    range: [0, 50]
+    default: 0
+    unit: "元/千字"
+    desc: 保底分成作品每千字的保底稿费，0 表示不设保底。只有签约类型为保底分成时才能配置。
+    depends_on: []
+    requires_value:
+      contract_type: guarantee
+    mutex_with: []
+    enhances: [author_income, update_stability]
+    weakens: [platform_revenue]
+
+  # ---------------------- 作者福利 welfare ----------------------
+  - key: daily_update_words
+    name: 日更字数要求
+    aliases: [日更要求, 每日更新字数, 日更字数]
+    category: welfare
+    dimensions: [author, book]
+    type: int
+    range: [0, 20000]
+    default: 0
+    unit: "字"
+    desc: 作品每天至少要更新的字数，0 表示不做要求。全勤奖以这个数字作为考核线。
+    depends_on: []
+    mutex_with: []
+    enhances: [update_stability]
+    weakens: []
+
+  - key: full_attendance_bonus
+    name: 全勤奖
+    aliases: [全勤, 全勤奖励, 月度全勤]
+    category: welfare
+    dimensions: [channel, book]
+    type: bool
+    default: false
+    desc: 作者当月每天都达到日更字数要求，就发放全勤奖。必须先设置日更字数要求，且要求不能太低（见 R002）。
+    depends_on: [daily_update_words]
+    mutex_with: []
+    enhances: [update_stability, author_income]
+    weakens: [platform_revenue]
+
+  - key: completion_bonus
+    name: 完本奖
+    aliases: [完结奖, 完本奖励]
+    category: welfare
+    dimensions: [channel, book]
+    type: bool
+    default: false
+    desc: 作品正常完结后一次性发放的奖励，鼓励作者写完而不是断更。买断作品不发（见 R001）。
+    depends_on: []
+    mutex_with: []
+    enhances: [author_income, reader_retention]
+    weakens: [platform_revenue]
+
+  - key: extra_update_event
+    name: 加更活动
+    aliases: [加更, 爆更活动, 加更奖励]
+    category: welfare
+    dimensions: [book]
+    type: bool
+    default: false
+    desc: 在日更之外额外加更可以拿奖励。只对已开全勤奖的作品开放，否则作者可能加更几天就断更。
+    depends_on: [full_attendance_bonus]
+    mutex_with: []
+    enhances: [reader_retention, update_stability]
+    weakens: []
+
+  # ---------------------- 推荐与扶持 traffic ----------------------
+  - key: quality_review_pass
+    name: 精品审核
+    aliases: [精品认证, 质量审核, 精品标]
+    category: traffic
+    dimensions: [book]
+    type: bool
+    default: false
+    desc: 编辑对作品质量的审核结果，通过后才有资格上首页推荐位。
+    depends_on: []
+    mutex_with: []
+    enhances: [reader_retention]
+    weakens: []
+
+  - key: newbook_boost
+    name: 新书期流量扶持
+    aliases: [新书扶持, 新书流量, 新书期推荐]
+    category: traffic
+    dimensions: [channel, book]
+    type: bool
+    default: false
+    desc: 新书上架前一段时间给予额外曝光，帮助冷启动。
+    depends_on: []
+    mutex_with: []
+    enhances: [newbook_exposure]
+    weakens: []
+
+  - key: home_banner
+    name: 首页推荐位
+    aliases: [首页推荐, 首页位, 首页banner]
+    category: traffic
+    dimensions: [book]
+    type: bool
+    default: false
+    desc: 作品出现在首页推荐区，曝光量最大的资源位。必须先通过精品审核。
+    depends_on: [quality_review_pass]
+    mutex_with: []
+    enhances: [newbook_exposure, platform_revenue]
+    weakens: []
+
+  - key: new_author_plan
+    name: 新人作者扶持计划
+    aliases: [新人扶持, 新人计划, 新作者扶持]
+    category: traffic
+    dimensions: [author]
+    type: bool
+    default: false
+    desc: 面向新签约作者的扶持计划，提供额外曝光和写作指导。与大神作者计划不能同时参加。
+    depends_on: []
+    mutex_with: [veteran_author_plan]
+    enhances: [newbook_exposure, author_income]
+    weakens: []
+
+  - key: veteran_author_plan
+    name: 大神作者计划
+    aliases: [大神计划, 头部作者计划, 大神扶持]
+    category: traffic
+    dimensions: [author]
+    type: bool
+    default: false
+    desc: 面向头部作者的计划，提供更高的资源优先级。与新人作者扶持计划不能同时参加。
+    depends_on: []
+    mutex_with: [new_author_plan]
+    enhances: [author_income, platform_revenue]
+    weakens: []
+
+  # ---------------------- 阅读模式 reading ----------------------
+  - key: free_read_mode
+    name: 免费阅读模式
+    aliases: [免费阅读, 免费模式, 免费看]
+    category: reading
+    dimensions: [channel, book]
+    type: bool
+    default: false
+    desc: 读者免费阅读全书，平台靠广告变现。与付费章节不能同时开。
+    depends_on: []
+    mutex_with: [paid_chapter]
+    enhances: [reader_retention, newbook_exposure]
+    weakens: []
+
+  - key: ad_revenue_share
+    name: 广告分成
+    aliases: [广告收益分成, 广告分账]
+    category: reading
+    dimensions: [book]
+    type: bool
+    default: false
+    desc: 免费阅读作品的广告收益按比例分给作者。只有开了免费阅读模式才有广告收益可分。
+    depends_on: [free_read_mode]
+    mutex_with: []
+    enhances: [author_income]
+    weakens: []
+
+  - key: paid_chapter
+    name: 付费章节
+    aliases: [付费阅读, VIP章节, 收费章节]
+    category: reading
+    dimensions: [channel, book]
+    type: bool
+    default: false
+    desc: 从某一章开始，读者要付费才能继续读。与免费阅读模式不能同时开。
+    depends_on: []
+    mutex_with: [free_read_mode]
+    enhances: [platform_revenue, author_income]
+    weakens: [reader_retention]
+
+  - key: paywall_start_chapter
+    name: 付费起始章节
+    aliases: [付费起点, 入V章节, 从第几章收费]
+    category: reading
+    dimensions: [book]
+    type: int
+    range: [0, 200]
+    default: 0
+    unit: "章"
+    desc: 从第几章开始收费，0 表示未设置。只有开了付费章节才生效，开得太早留存会掉（见 R004）。
+    depends_on: [paid_chapter]
+    mutex_with: []
+    enhances: [platform_revenue]
+    weakens: []
+
+
+# =============================================================================
+# 跨配置项的复合约束（规则引擎专用，无法用单项 depends_on/mutex 表达）
+# =============================================================================
+composite_rules:
+  - id: R001
+    name: 买断不发完本奖
+    desc: 签约类型为买断时，不能开启完本奖（买断时平台已一次性付清，不再额外奖励）
+    expr: "contract_type == 'buyout' -> completion_bonus == false"
+    severity: error
+
+  - id: R002
+    name: 全勤字数门槛
+    desc: 开启全勤奖时，日更字数要求不得低于 4000 字
+    expr: "full_attendance_bonus == true -> daily_update_words >= 4000"
+    severity: error
+
+  - id: R003
+    name: 保底作品分成上限
+    desc: 签约类型为保底分成时，作者分成比例不得超过 50%（保底已由平台兜底，分成要让利）
+    expr: "contract_type == 'guarantee' -> share_ratio <= 50"
+    severity: error
+
+  - id: R004
+    name: 付费起点过早
+    desc: 付费起始章节早于第 20 章时，读者还没被留住就要付费，留存可能明显下滑
+    expr: "paid_chapter == true and 0 < paywall_start_chapter < 20 -> warn"
+    severity: warn

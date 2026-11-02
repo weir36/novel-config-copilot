@@ -1,0 +1,214 @@
+{
+  "n_chunks": 40,
+  "n_gold": 37,
+  "results": {
+    "rule": {
+      "overall": {
+        "precision": 0.8571,
+        "recall": 0.973,
+        "f1": 0.9114,
+        "tp": 36,
+        "pred": 42,
+        "gold": 37
+      },
+      "by_type": {
+        "DEPENDS_ON": {
+          "precision": 0.7143,
+          "recall": 1.0,
+          "f1": 0.8333,
+          "tp": 5,
+          "pred": 7,
+          "gold": 5
+        },
+        "REQUIRES_VALUE": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "tp": 1,
+          "pred": 2,
+          "gold": 1
+        },
+        "MUTEX_WITH": {
+          "precision": 0.4,
+          "recall": 1.0,
+          "f1": 0.5714,
+          "tp": 2,
+          "pred": 5,
+          "gold": 2
+        },
+        "ENHANCES": {
+          "precision": 1.0,
+          "recall": 0.9583,
+          "f1": 0.9787,
+          "tp": 23,
+          "pred": 23,
+          "gold": 24
+        },
+        "WEAKENS": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "tp": 5,
+          "pred": 5,
+          "gold": 5
+        }
+      }
+    },
+    "llm": {
+      "overall": {
+        "precision": 0.74,
+        "recall": 1.0,
+        "f1": 0.8506,
+        "tp": 37,
+        "pred": 50,
+        "gold": 37
+      },
+      "by_type": {
+        "DEPENDS_ON": {
+          "precision": 0.625,
+          "recall": 1.0,
+          "f1": 0.7692,
+          "tp": 5,
+          "pred": 8,
+          "gold": 5
+        },
+        "REQUIRES_VALUE": {
+          "precision": 0.125,
+          "recall": 1.0,
+          "f1": 0.2222,
+          "tp": 1,
+          "pred": 8,
+          "gold": 1
+        },
+        "MUTEX_WITH": {
+          "precision": 0.6667,
+          "recall": 1.0,
+          "f1": 0.8,
+          "tp": 2,
+          "pred": 3,
+          "gold": 2
+        },
+        "ENHANCES": {
+          "precision": 0.96,
+          "recall": 1.0,
+          "f1": 0.9796,
+          "tp": 24,
+          "pred": 25,
+          "gold": 24
+        },
+        "WEAKENS": {
+          "precision": 0.8333,
+          "recall": 1.0,
+          "f1": 0.9091,
+          "tp": 5,
+          "pred": 6,
+          "gold": 5
+        }
+      }
+    },
+    "hybrid": {
+      "overall": {
+        "precision": 0.6727,
+        "recall": 1.0,
+        "f1": 0.8043,
+        "tp": 37,
+        "pred": 55,
+        "gold": 37
+      },
+      "by_type": {
+        "DEPENDS_ON": {
+          "precision": 0.5,
+          "recall": 1.0,
+          "f1": 0.6667,
+          "tp": 5,
+          "pred": 10,
+          "gold": 5
+        },
+        "REQUIRES_VALUE": {
+          "precision": 0.125,
+          "recall": 1.0,
+          "f1": 0.2222,
+          "tp": 1,
+          "pred": 8,
+          "gold": 1
+        },
+        "MUTEX_WITH": {
+          "precision": 0.3333,
+          "recall": 1.0,
+          "f1": 0.5,
+          "tp": 2,
+          "pred": 6,
+          "gold": 2
+        },
+        "ENHANCES": {
+          "precision": 0.96,
+          "recall": 1.0,
+          "f1": 0.9796,
+          "tp": 24,
+          "pred": 25,
+          "gold": 24
+        },
+        "WEAKENS": {
+          "precision": 0.8333,
+          "recall": 1.0,
+          "f1": 0.9091,
+          "tp": 5,
+          "pred": 6,
+          "gold": 5
+        }
+      }
+    }
+  },
+  "entities": {
+    "vocab": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 136,
+      "pred": 136,
+      "gold": 136,
+      "pending": 0,
+      "layers": {}
+    },
+    "llm": {
+      "precision": 1.0,
+      "recall": 0.9265,
+      "f1": 0.9618,
+      "tp": 126,
+      "pred": 126,
+      "gold": 136,
+      "pending": 24,
+      "pending_names": [
+        "分成",
+        "保底",
+        "福利",
+        "推荐",
+        "比例",
+        "收益",
+        "收入",
+        "作品收益",
+        "平台",
+        "买断作品",
+        "保底分成作品",
+        "分成作品",
+        "督促更新",
+        "读者体验",
+        "曝光",
+        "曝光量",
+        "书",
+        "作品维度",
+        "作者维度",
+        "ttendance_bonus",
+        "督促新人稳定更新",
+        "稿费",
+        "广告收益",
+        "保底作品"
+      ],
+      "layers": {
+        "exact": 177,
+        "pending": 28
+      },
+      "mentions": 205
+    }
+  }
+}

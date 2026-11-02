@@ -1,0 +1,273 @@
+{
+  "summary": {
+    "n_cases": 12,
+    "mode": "baseline",
+    "agent_enabled": false,
+    "llm": {
+      "provider": "openai",
+      "model": "gemini-4-argon",
+      "base_url": "https://api-slb.micuapi.ai/v1"
+    },
+    "intent_accuracy": null,
+    "mention_coverage": 0.7692,
+    "plan_valid_rate": 0.6,
+    "plan_cases": 5,
+    "short_circuit_rate": null,
+    "p50_latency_ms": 13275.9,
+    "p95_latency_ms": 25169.6,
+    "avg_agent_steps": 0,
+    "llm_stats": {
+      "calls": 12,
+      "prompt_tokens": 4405,
+      "completion_tokens": 5478,
+      "avg_latency_ms": 14110.1,
+      "errors": 0,
+      "by_purpose": {
+        "baseline": 12
+      }
+    }
+  },
+  "details": [
+    {
+      "id": "e01",
+      "query": "加更活动要怎么才能开起来",
+      "intent_gold": "explain",
+      "intent_pred": "explain",
+      "intent_ok": true,
+      "mention": "3/3",
+      "missed": [],
+      "plan": {
+        "applicable": false,
+        "passed": null,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 18528.0,
+      "note": "两跳依赖链要讲全"
+    },
+    {
+      "id": "e02",
+      "query": "给 W1001 的新书 B001 配一套冷启动方案",
+      "intent_gold": "recommend",
+      "intent_pred": "recommend",
+      "intent_ok": true,
+      "mention": "1/1",
+      "missed": [],
+      "plan": {
+        "applicable": true,
+        "passed": true,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 3897.8,
+      "note": "新人计划与大神计划互斥"
+    },
+    {
+      "id": "e03",
+      "query": "保底分成的书分成给 60% 行吗",
+      "intent_gold": "explain",
+      "intent_pred": "explain",
+      "intent_ok": true,
+      "mention": "1/2",
+      "missed": [
+        "rule:R003"
+      ],
+      "plan": {
+        "applicable": false,
+        "passed": null,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 10145.8,
+      "note": "必须指出 R003"
+    },
+    {
+      "id": "e04",
+      "query": "买断的书能开完本奖吗",
+      "intent_gold": "explain",
+      "intent_pred": "explain",
+      "intent_ok": true,
+      "mention": "0/1",
+      "missed": [
+        "rule:R001"
+      ],
+      "plan": {
+        "applicable": false,
+        "passed": null,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 3579.7,
+      "note": "必须指出 R001"
+    },
+    {
+      "id": "e05",
+      "query": "帮我出一套头部作品冲榜的配置",
+      "intent_gold": "recommend",
+      "intent_pred": "recommend",
+      "intent_ok": true,
+      "mention": "0/0",
+      "missed": [],
+      "plan": {
+        "applicable": true,
+        "passed": false,
+        "violations": [
+          "[INVALID_VALUE] 保底金额 取值 50000 超出允许范围 [0, 50]",
+          "[R003] 保底分成作品的作者分成比例不得超过 50%，当前为 70%"
+        ],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 13621.6,
+      "note": "首页推荐位要带上精品审核，加更要带上全勤"
+    },
+    {
+      "id": "e06",
+      "query": "B003 想冲榜，在现有配置上怎么调",
+      "intent_gold": "optimize",
+      "intent_pred": "optimize",
+      "intent_ok": true,
+      "mention": "0/0",
+      "missed": [],
+      "plan": {
+        "applicable": true,
+        "passed": true,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 4632.1,
+      "note": "要先查 B003 现状"
+    },
+    {
+      "id": "e07",
+      "query": "把 B004 的付费起点改到第 30 章，再开个完本奖",
+      "intent_gold": "optimize",
+      "intent_pred": "optimize",
+      "intent_ok": true,
+      "mention": "0/1",
+      "missed": [
+        "rule:R001"
+      ],
+      "plan": {
+        "applicable": true,
+        "passed": false,
+        "violations": [
+          "[R001] 签约类型为买断时不能开启完本奖（买断稿费已一次性付清，不再额外奖励）"
+        ],
+        "forbidden_hit": [
+          "completion_bonus=True"
+        ],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 25223.7,
+      "note": "B004 是买断，完本奖不能开"
+    },
+    {
+      "id": "e08",
+      "query": "给一本男频新书配福利，要全勤奖",
+      "intent_gold": "recommend",
+      "intent_pred": "recommend",
+      "intent_ok": true,
+      "mention": "0/0",
+      "missed": [],
+      "plan": {
+        "applicable": true,
+        "passed": true,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 12442.9,
+      "note": "全勤奖要配日更字数且不低于 4000（R002）"
+    },
+    {
+      "id": "e09",
+      "query": "一本书能同时开免费阅读和付费章节吗",
+      "intent_gold": "explain",
+      "intent_pred": "explain",
+      "intent_ok": true,
+      "mention": "3/3",
+      "missed": [],
+      "plan": {
+        "applicable": false,
+        "passed": null,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 25169.6,
+      "note": ""
+    },
+    {
+      "id": "e10",
+      "query": "作者问为什么这个月没拿到全勤奖",
+      "intent_gold": "explain",
+      "intent_pred": "explain",
+      "intent_ok": true,
+      "mention": "2/2",
+      "missed": [],
+      "plan": {
+        "applicable": false,
+        "passed": null,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 12930.2,
+      "note": ""
+    },
+    {
+      "id": "e11",
+      "query": "帮我写一段小说开头",
+      "intent_gold": "out_of_scope",
+      "intent_pred": "out_of_scope",
+      "intent_ok": true,
+      "mention": "0/0",
+      "missed": [],
+      "plan": {
+        "applicable": false,
+        "passed": null,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 17223.3,
+      "note": ""
+    },
+    {
+      "id": "e12",
+      "query": "今天天气怎么样",
+      "intent_gold": "out_of_scope",
+      "intent_pred": "out_of_scope",
+      "intent_ok": true,
+      "mention": "0/0",
+      "missed": [],
+      "plan": {
+        "applicable": false,
+        "passed": null,
+        "violations": [],
+        "forbidden_hit": [],
+        "expected_missing": []
+      },
+      "agent_steps": 0,
+      "latency_ms": 21939.1,
+      "note": ""
+    }
+  ]
+}

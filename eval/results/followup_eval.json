@@ -1,0 +1,210 @@
+{
+  "split": "test",
+  "n_dialogs": 10,
+  "n_turns": 20,
+  "accuracy": 0.75,
+  "precision": 1.0,
+  "recall": 0.5833,
+  "f1": 0.7368,
+  "false_positive": 0,
+  "false_negative": 5,
+  "details": [
+    {
+      "dialog": "t01",
+      "turn": 2,
+      "query": "那买断的书呢",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "短问且没提配置项"
+      ]
+    },
+    {
+      "dialog": "t01",
+      "turn": 3,
+      "query": "精品审核是什么",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "t02",
+      "turn": 2,
+      "query": "全勤门槛提到 5000",
+      "gold": true,
+      "pred": false,
+      "ok": false,
+      "reasons": []
+    },
+    {
+      "dialog": "t02",
+      "turn": 3,
+      "query": "再加个加更活动",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "t03",
+      "turn": 2,
+      "query": "广告分成跟它有关系吗",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词",
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "t03",
+      "turn": 3,
+      "query": "R003 是什么规则",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "t04",
+      "turn": 2,
+      "query": "如果没过精品审核会怎样",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "配置项和上一轮重合"
+      ]
+    },
+    {
+      "dialog": "t04",
+      "turn": 3,
+      "query": "日更字数要求是什么",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "t05",
+      "turn": 2,
+      "query": "大神计划呢",
+      "gold": true,
+      "pred": false,
+      "ok": false,
+      "reasons": []
+    },
+    {
+      "dialog": "t05",
+      "turn": 3,
+      "query": "付费起始章节最多填多少",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "t06",
+      "turn": 2,
+      "query": "完本奖为什么不能开",
+      "gold": true,
+      "pred": false,
+      "ok": false,
+      "reasons": []
+    },
+    {
+      "dialog": "t06",
+      "turn": 3,
+      "query": "今天几号",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "t07",
+      "turn": 2,
+      "query": "上限是多少",
+      "gold": true,
+      "pred": false,
+      "ok": false,
+      "reasons": []
+    },
+    {
+      "dialog": "t07",
+      "turn": 3,
+      "query": "加更活动依赖什么",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "t08",
+      "turn": 2,
+      "query": "从第几章开始收费比较好",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "短问且没提配置项"
+      ]
+    },
+    {
+      "dialog": "t08",
+      "turn": 3,
+      "query": "新书期流量扶持能配在频道上吗",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "t09",
+      "turn": 2,
+      "query": "选买断的话分成比例还生效吗",
+      "gold": true,
+      "pred": false,
+      "ok": false,
+      "reasons": []
+    },
+    {
+      "dialog": "t09",
+      "turn": 3,
+      "query": "全勤奖怎么开",
+      "gold": false,
+      "pred": false,
+      "ok": true,
+      "reasons": []
+    },
+    {
+      "dialog": "t10",
+      "turn": 2,
+      "query": "把免费阅读去掉",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "在改上一轮的方案"
+      ]
+    },
+    {
+      "dialog": "t10",
+      "turn": 3,
+      "query": "那付费起点设第几章",
+      "gold": true,
+      "pred": true,
+      "ok": true,
+      "reasons": [
+        "指代或承接词"
+      ]
+    }
+  ]
+}
