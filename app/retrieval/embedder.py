@@ -238,3 +238,35 @@ def embedder_meta() -> dict:
 
 def dump_meta(path: Path) -> None:
     path.write_text(json.dumps(embedder_meta(), ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+class IndexMismatchError(RuntimeError):
+    """建库用的 embedder 和当前运行的 embedder 不一致。"""
+
+
+def check_index_compat(index_dir: Path | None = None) -> None:
+    """启动/热加载时比对 embedder_meta.json 与当前 embedder，不一致就立刻报错。
+
+    get_embedder() 的降级是静默的：建库时用 bge（512 维），运行时 torch 没装上就会
+    退到 tfidf（维度取决于语料条数）。不在这里拦住的话，要等第一条查询打到向量库
+    才会以维度不匹配崩掉；就算维度碰巧相同，两个向量空间也不可比，召回结果是错的。
+    """
+    index_dir = index_dir or settings.index_dir
+    meta_path = index_dir / "embedder_meta.json"
+    if not meta_path.exists():
+        if (index_dir / "chunks_vectors.npy").exists():
+            logger.warning("索引缺少 %s，无法校验 embedder 一致性，建议重建索引", meta_path.name)
+        return
+    built = json.loads(meta_path.read_text(encoding="utf-8"))
+    current = embedder_meta()
+    diffs = [
+        f"{k}: 建库={built.get(k)!r} 当前={current.get(k)!r}"
+        for k in ("backend", "dim", "model")
+        if built.get(k) != current.get(k)
+    ]
+    if diffs:
+        raise IndexMismatchError(
+            "索引与当前 embedder 不一致（" + "；".join(diffs) + "）。"
+            "请在当前环境重建索引：python -m app.indexing.build，"
+            "或修复环境让 embedding 后端与建库时一致（EMBEDDING_BACKEND / 安装 sentence-transformers）。"
+        )

@@ -25,7 +25,7 @@ from typing import Literal
 import numpy as np
 
 from app.foundation.settings import settings
-from app.retrieval.embedder import get_embedder
+from app.retrieval.embedder import check_index_compat, get_embedder
 from app.retrieval import fusion
 from app.retrieval.entity_linker import get_entity_linker
 from app.retrieval.graph_store import get_graph_store, relations_to_triples
@@ -40,6 +40,7 @@ RetrievalMode = Literal["graphrag", "hybrid", "vector", "bm25"]
 
 class GraphRAGRetriever:
     def __init__(self) -> None:
+        check_index_compat()  # 先于加载索引：embedder 降级导致的向量空间不一致要在这里暴露
         self.chunk_vs = get_vector_store("chunks")
         self.chunk_kw = get_keyword_store("chunks")
         self.linker = get_entity_linker()

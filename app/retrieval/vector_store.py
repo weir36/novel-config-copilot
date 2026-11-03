@@ -65,10 +65,18 @@ class VectorStore:
         self._faiss_index = index
 
     # ---------------- 检索 ----------------
+    def _check_dim(self, q: np.ndarray) -> None:
+        if q.shape[-1] != self.vectors.shape[1]:
+            raise ValueError(
+                f"VectorStore[{self.name}] 查询向量 {q.shape[-1]} 维，索引 {self.vectors.shape[1]} 维："
+                "embedding 后端与建库时不一致，请重建索引"
+            )
+
     def search(self, query_vec: np.ndarray, top_k: int) -> list[tuple[str, float, dict]]:
         if self.vectors is None or not self.ids:
             return []
         q = np.asarray(query_vec, dtype=np.float32).reshape(1, -1)
+        self._check_dim(q)
         q = l2_normalize(q)
         k = min(top_k, len(self.ids))
 
@@ -104,7 +112,9 @@ class VectorStore:
         """
         if self.vectors is None or not self.ids or query_vecs.size == 0:
             return []
-        qs = l2_normalize(np.asarray(query_vecs, dtype=np.float32))
+        qs = np.asarray(query_vecs, dtype=np.float32)
+        self._check_dim(qs)
+        qs = l2_normalize(qs)
         sims = self.vectors @ qs.T  # (n_docs, n_queries)
         if weights is not None:
             sims = sims * np.asarray(weights, dtype=np.float32)[None, :]
